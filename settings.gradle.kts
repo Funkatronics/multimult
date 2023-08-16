@@ -14,5 +14,4 @@ pluginManagement {
     }
 }
 rootProject.name = "MultiMult"
-//includeBuild("convention-plugins")
 
