@@ -31,25 +31,3 @@ sealed class Base64Decoder(val alphabet: String): Decoder {
     class Default : Base64Decoder("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/")
     class Url : Base64Decoder("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_")
 }
-
-//object Base64Encoder : Encoder {
-//    const val ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
-//    override fun encode(input: ByteArray): ByteArray = encodeToString(input).toByteArray()
-//    override fun encodeToString(input: ByteArray): String = Base2N.encode(ALPHABET, 64, input)
-//}
-//
-//object Base64Decoder : Decoder {
-//    override fun decode(input: String): ByteArray = Base2N.decode(Base64Encoder.ALPHABET, 64, input)
-//    override fun decodeToString(input: String): String = String(decode(input))
-//}
-//
-//object Base64UrlEncoder : Encoder {
-//    const val ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_"
-//    override fun encode(input: ByteArray): ByteArray = Base2N.encode(ALPHABET, 64, input).toByteArray()
-//    override fun encodeToString(input: ByteArray): String = Base2N.encode(ALPHABET, 64, input)
-//}
-//
-//object Base64UrlDecoder : Decoder {
-//    override fun decode(input: String): ByteArray = Base2N.decode(Base64UrlEncoder.ALPHABET, 64, input)
-//    override fun decodeToString(input: String): String = String(decode(input))
-//}
