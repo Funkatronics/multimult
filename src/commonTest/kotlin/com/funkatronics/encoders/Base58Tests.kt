@@ -1,7 +1,7 @@
 package com.funkatronics.encoders
 
 import com.funkatronics.encoders.error.InvalidInputException
-import org.junit.jupiter.api.Test
+import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
