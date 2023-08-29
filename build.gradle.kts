@@ -41,3 +41,8 @@ kotlin {
         }
     }
 }
+
+mavenPublishing {
+    val artifactId: String by project
+    coordinates(group as String, artifactId, version as String)
+}
