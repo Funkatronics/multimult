@@ -25,7 +25,7 @@ class BinaryTests {
     fun testBase2EncodeDecodeLeadingZeros() {
         // given
         val leadingZeros = 2
-        val testString: String = String(ByteArray(leadingZeros)) + "yes mani !"
+        val testString: String = ByteArray(leadingZeros).decodeToString() + "yes mani !"
         val expectedEncoded = "000000000000000001111001011001010111001100100000011011010110000101101110011010010010000000100001"
 
         // when

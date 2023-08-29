@@ -45,7 +45,7 @@ class BaseNTests {
 
     @Test
     fun testBase() {
-        encodedSamples2.forEach { base, input ->
+        encodedSamples2.forEach { (base, input) ->
             val origin = BaseN.decodeBase2N(base.alphabet.filter { it != '=' }, base.alphabet.filter { it != '=' }.length, input.replace('=', base.alphabet[0]))
             val encode = BaseN.encodeBase2N(base.alphabet.filter { it != '=' }, origin)
             assertEquals(input.filter { it != '=' }, encode)
@@ -64,7 +64,7 @@ class BaseNTests {
 
             // then
             assertEquals(expectedEncoding, actualEncoding)
-            assertEquals(sampleString, String(actualDecoded))
+            assertEquals(sampleString, actualDecoded.decodeToString())
         }
     }
 
@@ -80,7 +80,7 @@ class BaseNTests {
 
             // then
             assertEquals(expectedEncoding, actualEncoding)
-            assertEquals(sampleString, String(actualDecoded), "decode failed: base = ${alphabet.length}")
+            assertEquals(sampleString, actualDecoded.decodeToString(), "decode failed: base = ${alphabet.length}")
         }
     }
 

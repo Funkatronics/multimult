@@ -26,7 +26,7 @@ class Base58Tests {
     fun testBase58EncodeDecodeLeadingZeros() {
         // given
         val leadingZeros = 3
-        val testString: String = String(ByteArray(leadingZeros)) + "Hello World"
+        val testString: String = ByteArray(leadingZeros).decodeToString() + "Hello World"
         val expectedEncoded = "111JxF12TrwUP45BMd"
 
         // when
@@ -84,7 +84,7 @@ class Base58Tests {
 
             // then
             assertEquals(entry.value, actualEncoded)
-            assertEquals(String(entry.key), actualDecoded)
+            assertEquals(entry.key.decodeToString(), actualDecoded)
         }
     }
 }

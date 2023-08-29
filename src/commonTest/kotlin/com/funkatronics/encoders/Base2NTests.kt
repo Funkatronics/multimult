@@ -59,7 +59,7 @@ class Base2NTests {
         val expectedDecoded = "yes mani !"
 
         // when
-        val actualDecoded = String(Base2N.decode(alphabet, base, stringToDecode))
+        val actualDecoded = Base2N.decode(alphabet, base, stringToDecode).decodeToString()
 
         // then
         assertEquals(expectedDecoded, actualDecoded)
@@ -74,7 +74,7 @@ class Base2NTests {
 
         // when
         val actualEncoded = Base2N.encode(alphabet, base, stringToEncode.encodeToByteArray())
-        val actualDecoded = String(Base2N.decode(alphabet, base, actualEncoded))
+        val actualDecoded = Base2N.decode(alphabet, base, actualEncoded).decodeToString()
 
         // then
         assertEquals(stringToEncode, actualDecoded)
@@ -104,7 +104,7 @@ class Base2NTests {
         val expectedDecoded = "Hello!"
 
         // when
-        val actualDecoded = String(Base2N.decode(alphabet, base, stringToDecode))
+        val actualDecoded = Base2N.decode(alphabet, base, stringToDecode).decodeToString()
 
         // then
         assertEquals(expectedDecoded, actualDecoded)
@@ -134,7 +134,7 @@ class Base2NTests {
         val expectedDecoded = "Hello!"
 
         // when
-        val actualDecoded = String(Base2N.decode(alphabet, base, stringToDecode))
+        val actualDecoded = Base2N.decode(alphabet, base, stringToDecode).decodeToString()
 
         // then
         assertEquals(expectedDecoded, actualDecoded)

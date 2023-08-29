@@ -2,6 +2,7 @@ package com.funkatronics.encoders
 
 import com.funkatronics.encoders.error.InvalidInputException
 import com.funkatronics.multibase.MultiBase
+import kotlinx.datetime.Clock
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -42,7 +43,7 @@ class Base64Tests {
     fun testBase64EncodeDecodeLeadingZeros() {
         // given
         val leadingZeros = 3
-        val testString: String = String(ByteArray(leadingZeros)) + "Hello!"
+        val testString: String = ByteArray(leadingZeros).decodeToString() + "Hello!"
         val expectedEncoded = "AAAASGVsbG8h"
 
         // when
@@ -186,7 +187,7 @@ class Base64Tests {
         println("$PRINT_REFIX -> go")
 
         while (++t <= TEST_COUNT + WARM_COUNT) {
-            val startTime = System.currentTimeMillis()
+            val startTime = Clock.System.now().toEpochMilliseconds()
 
             var i = 0
             while (i++ < ITERATIONS)
@@ -197,7 +198,7 @@ class Base64Tests {
                 continue
             }
 
-            val time = System.currentTimeMillis() - startTime
+            val time = Clock.System.now().toEpochMilliseconds() - startTime
             println(PRINT_REFIX+" "+time.toString()+"ms")
 
             results.add(time)

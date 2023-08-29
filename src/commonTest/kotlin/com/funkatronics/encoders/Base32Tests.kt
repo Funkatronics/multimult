@@ -41,7 +41,7 @@ class Base32Tests {
     fun testBase32EncodeDecodeLeadingZeros() {
         // given
         val leadingZeros = 5
-        val testString: String = String(ByteArray(leadingZeros)) + "Hello!"
+        val testString: String = ByteArray(leadingZeros).decodeToString() + "Hello!"
         val expectedEncoded = "AAAAAAAAJBSWY3DPEE======"
 
         // when
