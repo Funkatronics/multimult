@@ -15,7 +15,7 @@ object Base32 : Encoder, Decoder {
 }
 
 sealed class Base32Encoder(val alphabet: String, private val withoutPadding: Boolean = false): Encoder {
-    override fun encode(input: ByteArray): ByteArray = encodeToString(input).toByteArray()
+    override fun encode(input: ByteArray): ByteArray = encodeToString(input).encodeToByteArray()
     override fun encodeToString(input: ByteArray): String = Base2N.encode(alphabet, 32, input, !withoutPadding)
 
     class Default(withoutPadding: Boolean)
@@ -26,7 +26,7 @@ sealed class Base32Encoder(val alphabet: String, private val withoutPadding: Boo
 
 sealed class Base32Decoder(val alphabet: String): Decoder {
     override fun decode(input: String): ByteArray = Base2N.decode(alphabet, 32, input)
-    override fun decodeToString(input: String): String = String(decode(input))
+    override fun decodeToString(input: String): String = decode(input).decodeToString()
 
     class Default : Base32Decoder("ABCDEFGHIJKLMNOPQRSTUVWXYZ234567")
     class Hex : Base32Decoder("0123456789ABCDEFGHIJKLMNOPQRSTUV")

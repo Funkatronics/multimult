@@ -33,11 +33,11 @@ object BaseN {
         return if (padWith != null) {
             var length = finalSize - 1
             while (++length < encoded.size) encoded[length] = '='
-            String(encoded, 0, encoded.size)
-        } else String(encoded, 0, min(finalSize, encoded.size))
+            encoded.concatToString(0, encoded.size)
+        } else encoded.concatToString(0, min(finalSize, encoded.size))
     }
 
-    fun encodeBaseN(alphabet: String, input: ByteArray): String = String(encodeBaseNCanonical(alphabet, input))
+    fun encodeBaseN(alphabet: String, input: ByteArray): String = encodeBaseNCanonical(alphabet, input).concatToString()
 
     private fun encodeBaseNCanonical(alphabet: String, input: ByteArray): CharArray {
         if (input.isEmpty()) return CharArray(0)

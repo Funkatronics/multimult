@@ -59,7 +59,7 @@ class BaseNTests {
 
         // when
         encodedSamples.forEach { (alphabet, expectedEncoding) ->
-            val actualEncoding = BaseN.encode(alphabet, testString.toByteArray())
+            val actualEncoding = BaseN.encode(alphabet, testString.encodeToByteArray())
             val actualDecoded = BaseN.decode(alphabet, actualEncoding)
 
             // then
@@ -75,7 +75,7 @@ class BaseNTests {
 
         // when
         encodedSamples.forEach { (alphabet, expectedEncoding) ->
-            val actualEncoding = BaseN.encodeBase2N(alphabet, testString.toByteArray())
+            val actualEncoding = BaseN.encodeBase2N(alphabet, testString.encodeToByteArray())
             val actualDecoded = BaseN.decodeBase2N(alphabet, alphabet.length, actualEncoding)
 
             // then
@@ -91,7 +91,7 @@ class BaseNTests {
 //
 //        // when
 //        encodedSamples.forEach { (alphabet, expectedEncoding) ->
-//            val actualEncoding = BaseN.encodeBaseN(alphabet, testString.toByteArray())
+//            val actualEncoding = BaseN.encodeBaseN(alphabet, testString.encodeToByteArray())
 //            val actualDecoded = BaseN.decodeBaseNCanonical(alphabet, alphabet.length, actualEncoding)
 //
 //            // then
@@ -108,14 +108,14 @@ class BaseNTests {
 //            ?: throw Exception("Test base not provided for base: $base")
 //
 //        // when
-//        val actualEncoded: String = MultiBase.encode(base, testString.toByteArray())
+//        val actualEncoded: String = MultiBase.encode(base, testString.encodeToByteArray())
 //        val actualDecoded = String(MultiBase.decode(actualEncoded))
 //
 //        println("++++ Base: $base")
 //        println("++++ decoded = $actualDecoded")
 //        println("++++ encoded = $actualEncoded")
 //        println("++++ expectd = $expectedEncoded")
-////        println("++++    test = _${Base64.getEncoder().encodeToString(testString.toByteArray())}")
+////        println("++++    test = _${Base64.getEncoder().encodeToString(testString.encodeToByteArray())}")
 //        println("++++   test2 = ${String(MultiBase.decode(expectedEncoded))}")
 //
 //        // then

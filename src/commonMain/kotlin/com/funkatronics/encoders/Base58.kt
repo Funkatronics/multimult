@@ -11,11 +11,11 @@ object Base58 : Encoder, Decoder {
 
 object Base58BtcEncoder : Encoder {
     const val ALPHABET = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz"
-    override fun encode(input: ByteArray): ByteArray = encodeToString(input).toByteArray()
+    override fun encode(input: ByteArray): ByteArray = encodeToString(input).encodeToByteArray()
     override fun encodeToString(input: ByteArray): String = BaseN.encode(ALPHABET, input)
 }
 
 object Base58BtcDecoder : Decoder {
     override fun decode(input: String): ByteArray = BaseN.decode(Base58BtcEncoder.ALPHABET, 58, input)
-    override fun decodeToString(input: String): String = String(decode(input))
+    override fun decodeToString(input: String): String = decode(input).decodeToString()
 }

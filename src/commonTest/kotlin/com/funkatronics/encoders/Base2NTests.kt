@@ -14,7 +14,7 @@ class Base2NTests {
         val expectedEncoded = ""
 
         // when
-        val actualEncoded = Base2N.encode(alphabet, base, stringToEncode.toByteArray())
+        val actualEncoded = Base2N.encode(alphabet, base, stringToEncode.encodeToByteArray())
 
         // then
         assertEquals(expectedEncoded, actualEncoded)
@@ -44,7 +44,7 @@ class Base2NTests {
         val expectedEncoded = "01111001011001010111001100100000011011010110000101101110011010010010000000100001"
 
         // when
-        val actualEncoded = Base2N.encode(alphabet, base, stringToEncode.toByteArray())
+        val actualEncoded = Base2N.encode(alphabet, base, stringToEncode.encodeToByteArray())
 
         // then
         assertEquals(expectedEncoded, actualEncoded)
@@ -73,7 +73,7 @@ class Base2NTests {
         val stringToEncode = "a string to encode, with some punctuation!!/"
 
         // when
-        val actualEncoded = Base2N.encode(alphabet, base, stringToEncode.toByteArray())
+        val actualEncoded = Base2N.encode(alphabet, base, stringToEncode.encodeToByteArray())
         val actualDecoded = String(Base2N.decode(alphabet, base, actualEncoded))
 
         // then
@@ -89,7 +89,7 @@ class Base2NTests {
         val expectedEncoded ="JBSWY3DPEE======"
 
         // when
-        val actualEncoded = Base2N.encode(alphabet, base, stringToEncode.toByteArray())
+        val actualEncoded = Base2N.encode(alphabet, base, stringToEncode.encodeToByteArray())
 
         // then
         assertEquals(expectedEncoded, actualEncoded)
@@ -119,7 +119,7 @@ class Base2NTests {
         val expectedEncoded ="JBSWY3DPEE"
 
         // when
-        val actualEncoded = Base2N.encode(alphabet, base, stringToEncode.toByteArray(), pad = false)
+        val actualEncoded = Base2N.encode(alphabet, base, stringToEncode.encodeToByteArray(), pad = false)
 
         // then
         assertEquals(expectedEncoded, actualEncoded)
@@ -148,7 +148,7 @@ class Base2NTests {
         val stringToEncode = "encode me"
 
         // when
-        val block = { Base2N.encode(alphabet, base, stringToEncode.toByteArray()) }
+        val block = { Base2N.encode(alphabet, base, stringToEncode.encodeToByteArray()) }
 
         // then
         assertFailsWith(InvalidInputException.InvalidBase::class) {
@@ -180,7 +180,7 @@ class Base2NTests {
         val stringToEncode = "encode me"
 
         // when
-        val block = { Base2N.encode(alphabet, base, stringToEncode.toByteArray()) }
+        val block = { Base2N.encode(alphabet, base, stringToEncode.encodeToByteArray()) }
 
         // then
         assertFailsWith(InvalidInputException.InvalidAlphabet::class) {

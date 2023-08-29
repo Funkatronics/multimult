@@ -13,7 +13,7 @@ class BinaryTests {
         val expectedEncoded = "01111001011001010111001100100000011011010110000101101110011010010010000000100001"
 
         // when
-        val actualEncoded: String = Binary.encodeToString(testString.toByteArray())
+        val actualEncoded: String = Binary.encodeToString(testString.encodeToByteArray())
         val actualDecoded = Binary.decodeToString(actualEncoded)
 
         // then
@@ -29,7 +29,7 @@ class BinaryTests {
         val expectedEncoded = "000000000000000001111001011001010111001100100000011011010110000101101110011010010010000000100001"
 
         // when
-        val actualEncoded: String = Binary.encodeToString(testString.toByteArray())
+        val actualEncoded: String = Binary.encodeToString(testString.encodeToByteArray())
         val actualDecoded = Binary.decodeToString(actualEncoded)
 
         // then
@@ -44,7 +44,7 @@ class BinaryTests {
         val expectedEncoded = ""
 
         // when
-        val actualEncoded: String = Binary.encodeToString(testString.toByteArray())
+        val actualEncoded: String = Binary.encodeToString(testString.encodeToByteArray())
         val actualDecoded = Binary.decodeToString(actualEncoded)
 
         // then

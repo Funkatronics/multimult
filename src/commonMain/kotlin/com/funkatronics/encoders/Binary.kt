@@ -2,7 +2,7 @@ package com.funkatronics.encoders
 
 object Binary : Encoder, Decoder {
 
-    override fun encode(input: ByteArray): ByteArray = encodeToString(input).toByteArray(Charsets.UTF_8)
+    override fun encode(input: ByteArray): ByteArray = encodeToString(input).encodeToByteArray()
 
     override fun encodeToString(input: ByteArray): String {
         return input.fold("") { a, c ->
@@ -18,5 +18,5 @@ object Binary : Encoder, Decoder {
         }.toByteArray()
     }
 
-    override fun decodeToString(input: String): String = String(decode(input))
+    override fun decodeToString(input: String): String = decode(input).decodeToString()
 }

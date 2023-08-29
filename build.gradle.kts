@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "io.github.funkatronics"
-version = "0.2.0"
+version = "main-SNAPSHOT"
 
 repositories {
     google()

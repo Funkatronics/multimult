@@ -15,7 +15,7 @@ class Base64Tests {
         val expectedEncoded = "bWFu"
 
         // when
-        val actualEncoded: String = Base64.encodeToString(testString.toByteArray())
+        val actualEncoded: String = Base64.encodeToString(testString.encodeToByteArray())
         val actualDecoded = Base64.decodeToString(actualEncoded)
 
         // then
@@ -30,7 +30,7 @@ class Base64Tests {
         val expectedEncoded = "SGVsbG8h"
 
         // when
-        val actualEncoded: String = Base64.encodeToString(testString.toByteArray())
+        val actualEncoded: String = Base64.encodeToString(testString.encodeToByteArray())
         val actualDecoded = Base64.decodeToString(actualEncoded)
 
         // then
@@ -46,7 +46,7 @@ class Base64Tests {
         val expectedEncoded = "AAAASGVsbG8h"
 
         // when
-        val actualEncoded: String = Base64.encodeToString(testString.toByteArray())
+        val actualEncoded: String = Base64.encodeToString(testString.encodeToByteArray())
         val actualDecoded = Base64.decodeToString(actualEncoded)
 
         // then
@@ -61,7 +61,7 @@ class Base64Tests {
         val expectedEncoded = ""
 
         // when
-        val actualEncoded: String = Base64.encodeToString(testString.toByteArray())
+        val actualEncoded: String = Base64.encodeToString(testString.encodeToByteArray())
         val actualDecoded = Base64.decodeToString(actualEncoded)
 
         // then
@@ -98,7 +98,7 @@ class Base64Tests {
         for (entry in testVector) {
 
             // when
-            val actualEncoded: String = Base64.encodeToString(entry.key.toByteArray())
+            val actualEncoded: String = Base64.encodeToString(entry.key.encodeToByteArray())
             val actualDecoded = Base64.decodeToString(actualEncoded)
 
             // then
@@ -111,65 +111,65 @@ class Base64Tests {
 //    fun perfTestEncode() {
 //
 //        val message = "A very very long string to simulate a very very long encode. ig guess its not that long but oh well it should be an okay test"
-//        val encoded = Base2N.encode("01", 2, message.toByteArray())
-//        //Base2N.encode(Base64Encoder.ALPHABET, 64, "A very very long string to simulate a very very long encode. ig guess its not that long but oh well it should be an okay test".toByteArray())
-//        //Base64.encodeToString("A very very long string to simulate a very very long encode. ig guess its not that long but oh well it should be an okay test".toByteArray())
+//        val encoded = Base2N.encode("01", 2, message.encodeToByteArray())
+//        //Base2N.encode(Base64Encoder.ALPHABET, 64, "A very very long string to simulate a very very long encode. ig guess its not that long but oh well it should be an okay test".encodeToByteArray())
+//        //Base64.encodeToString("A very very long string to simulate a very very long encode. ig guess its not that long but oh well it should be an okay test".encodeToByteArray())
 //
 //        simpleMeasureTest {
-//            Base2.encode(message.toByteArray())
+//            Base2.encode(message.encodeToByteArray())
 ////            Base2.decode(encoded)
 ////            Base2N.decode(Base64Encoder.ALPHABET, 64, encoded)
 //        }
 //
 //        simpleMeasureTest {
-////            Base64.encodeToString("A very very long string to simulate a very very long encode. ig guess its not that long but oh well it should be an okay test".toByteArray())
-////            MultiBase.encode(MultiBase.Base.BASE2, "A very very long string to simulate a very very long encode. ig guess its not that long but oh well it should be an okay test".toByteArray())
-//            Base2N.encode("01", 2, message.toByteArray())
-////            Base2N.encode(Base64Encoder.ALPHABET, 64, "A very very long string to simulate a very very long encode. ig guess its not that long but oh well it should be an okay test".toByteArray())
+////            Base64.encodeToString("A very very long string to simulate a very very long encode. ig guess its not that long but oh well it should be an okay test".encodeToByteArray())
+////            MultiBase.encode(MultiBase.Base.BASE2, "A very very long string to simulate a very very long encode. ig guess its not that long but oh well it should be an okay test".encodeToByteArray())
+//            Base2N.encode("01", 2, message.encodeToByteArray())
+////            Base2N.encode(Base64Encoder.ALPHABET, 64, "A very very long string to simulate a very very long encode. ig guess its not that long but oh well it should be an okay test".encodeToByteArray())
 ////            Base64.decode(encoded)
 ////            Base2N.decode("01", 2, encoded)
 //        }
 //
 //        simpleMeasureTest {
-//            BaseN.encodeBaseNNew("01", message.toByteArray())
+//            BaseN.encodeBaseNNew("01", message.encodeToByteArray())
 //        }
 //
 //        simpleMeasureTest {
-//            BaseN.encodeNewNew("01", message.toByteArray())
+//            BaseN.encodeNewNew("01", message.encodeToByteArray())
 //        }
 //    }
 
 //    @Test
 //    fun perfTestNew() {
 //        val input = "A very very long string to simulate a very very long encode. ig guess its not that long but oh well it should be an okay test"
-//        val encoded = BaseN.encodeNewNew(MultiBase.Base64.alphabet, input.toByteArray())
+//        val encoded = BaseN.encodeNewNew(MultiBase.Base64.alphabet, input.encodeToByteArray())
 //        simpleMeasureTest {
-////            BaseN.encodeNewNew(MultiBase.Base58Btc.alphabet, input.toByteArray())
-////            BaseN.encodeNewNew(MultiBase.Base64.alphabet, input.toByteArray())
-////            BaseN.encodeNewNew(MultiBase.Base36.alphabet, input.toByteArray())
+////            BaseN.encodeNewNew(MultiBase.Base58Btc.alphabet, input.encodeToByteArray())
+////            BaseN.encodeNewNew(MultiBase.Base64.alphabet, input.encodeToByteArray())
+////            BaseN.encodeNewNew(MultiBase.Base36.alphabet, input.encodeToByteArray())
 ////            BaseN.decodeFast(MultiBase.Base64.alphabet, 58, encoded)
-////            BaseN.encodeNewNew(MultiBase.Base64.alphabet, input.toByteArray())
-////            BaseN.encodeNewNew(MultiBase.Base32.alphabet, input.toByteArray())
-////            BaseN.encodeNewNew(MultiBase.Base58Btc.alphabet, input.toByteArray())
+////            BaseN.encodeNewNew(MultiBase.Base64.alphabet, input.encodeToByteArray())
+////            BaseN.encodeNewNew(MultiBase.Base32.alphabet, input.encodeToByteArray())
+////            BaseN.encodeNewNew(MultiBase.Base58Btc.alphabet, input.encodeToByteArray())
 ////            BaseN.decodeFast(MultiBase.Base64.alphabet, 58, encoded)
-////            BaseN.decodeBaseNCanonical(MultiBase.Base2.alphabet, 2, Base2.encodeToString(input.toByteArray()))
-////            Base2N.encode(MultiBase.Base32.alphabet, 32, input.toByteArray())
-//            Base2N.encode(MultiBase.Base64.alphabet, 64, input.toByteArray())
+////            BaseN.decodeBaseNCanonical(MultiBase.Base2.alphabet, 2, Base2.encodeToString(input.encodeToByteArray()))
+////            Base2N.encode(MultiBase.Base32.alphabet, 32, input.encodeToByteArray())
+//            Base2N.encode(MultiBase.Base64.alphabet, 64, input.encodeToByteArray())
 //        }
 //
 //        simpleMeasureTest {
-////            BaseN.encodeBaseNNew(MultiBase.Base58Btc.alphabet, input.toByteArray())
-////            BaseN.encodeBaseNNew(MultiBase.Base64.alphabet, input.toByteArray())
-////            BaseN.encodeBaseNNew(MultiBase.Base36.alphabet, input.toByteArray())
+////            BaseN.encodeBaseNNew(MultiBase.Base58Btc.alphabet, input.encodeToByteArray())
+////            BaseN.encodeBaseNNew(MultiBase.Base64.alphabet, input.encodeToByteArray())
+////            BaseN.encodeBaseNNew(MultiBase.Base36.alphabet, input.encodeToByteArray())
 ////            BaseN.decodeSlow(MultiBase.Base64.alphabet, 58, encoded)
-////            BaseN.encodeBase2N(MultiBase.Base64.alphabet, input.toByteArray())
-////            BaseN.encodeBase2N(MultiBase.Base32.alphabet, input.toByteArray())
-////            BaseN.encodeBaseN(MultiBase.Base58Btc.alphabet, input.toByteArray())
+////            BaseN.encodeBase2N(MultiBase.Base64.alphabet, input.encodeToByteArray())
+////            BaseN.encodeBase2N(MultiBase.Base32.alphabet, input.encodeToByteArray())
+////            BaseN.encodeBaseN(MultiBase.Base58Btc.alphabet, input.encodeToByteArray())
 ////            BaseN.decodeBase2N(MultiBase.Base64.alphabet, 58, encoded)
-////            BaseN.encodeBaseN(MultiBase.Base2.alphabet, input.toByteArray())
-////            Base2.decode(Base2.encodeToString(input.toByteArray()))
-////            BaseN.encode(MultiBase.Base32.alphabet, input.toByteArray())
-//            BaseN.encode(MultiBase.Base64.alphabet, input.toByteArray())
+////            BaseN.encodeBaseN(MultiBase.Base2.alphabet, input.encodeToByteArray())
+////            Base2.decode(Base2.encodeToString(input.encodeToByteArray()))
+////            BaseN.encode(MultiBase.Base32.alphabet, input.encodeToByteArray())
+//            BaseN.encode(MultiBase.Base64.alphabet, input.encodeToByteArray())
 //        }
 //    }
 
