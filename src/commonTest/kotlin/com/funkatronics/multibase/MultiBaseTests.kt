@@ -1,6 +1,5 @@
 package com.funkatronics.multibase
 
-import java.util.*
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -32,7 +31,7 @@ class MultiBaseTests {
 
     @Test
     fun testBase() {
-        encodedSamples.forEach { base, input ->
+        encodedSamples.forEach { (base, input) ->
             val origin = MultiBase.decode(input)
             val encode = MultiBase.encode(base, origin)
             assertEquals(input, encode)
@@ -46,8 +45,8 @@ class MultiBaseTests {
         val expectedEncoded = "001111001011001010111001100100000011011010110000101101110011010010010000000100001"
 
         // when
-        val actualEncoded: String = MultiBase.Base2.encode(testString.toByteArray())
-        val actualDecoded = String(MultiBase.decode(actualEncoded))
+        val actualEncoded: String = MultiBase.Base2.encode(testString.encodeToByteArray())
+        val actualDecoded = MultiBase.decode(actualEncoded).decodeToString()
 
         // then
         assertEquals(expectedEncoded, actualEncoded)
@@ -61,8 +60,8 @@ class MultiBaseTests {
         val expectedEncoded = "7362625631006654133464440102"
 
         // when
-        val actualEncoded: String = MultiBase.encode(MultiBase.Base8, testString.toByteArray())
-        val actualDecoded = String(MultiBase.decode(actualEncoded))
+        val actualEncoded: String = MultiBase.encode(MultiBase.Base8, testString.encodeToByteArray())
+        val actualDecoded = MultiBase.decode(actualEncoded).decodeToString()
 
         // then
         assertEquals(expectedEncoded, actualEncoded)
@@ -76,8 +75,8 @@ class MultiBaseTests {
         val expectedEncoded = "9573277761329450583662625"
 
         // when
-        val actualEncoded: String = MultiBase.encode(MultiBase.Base10, testString.toByteArray())
-        val actualDecoded = String(MultiBase.decode(actualEncoded))
+        val actualEncoded: String = MultiBase.encode(MultiBase.Base10, testString.encodeToByteArray())
+        val actualDecoded = MultiBase.decode(actualEncoded).decodeToString()
 
         // then
         assertEquals(expectedEncoded, actualEncoded)
@@ -91,8 +90,8 @@ class MultiBaseTests {
         val expectedEncoded = "bpfsxgidnmfxgsibb"
 
         // when
-        val actualEncoded: String = MultiBase.encode(MultiBase.Base32, testString.toByteArray())
-        val actualDecoded = String(MultiBase.decode(actualEncoded))
+        val actualEncoded: String = MultiBase.encode(MultiBase.Base32, testString.encodeToByteArray())
+        val actualDecoded = MultiBase.decode(actualEncoded).decodeToString()
 
         // then
         assertEquals(expectedEncoded, actualEncoded)
@@ -106,8 +105,8 @@ class MultiBaseTests {
         val expectedEncoded = "hxf1zgedpcfzg1ebb"
 
         // when
-        val actualEncoded: String = MultiBase.encode(MultiBase.Base32Z, testString.toByteArray())
-        val actualDecoded = String(MultiBase.decode(actualEncoded))
+        val actualEncoded: String = MultiBase.encode(MultiBase.Base32Z, testString.encodeToByteArray())
+        val actualDecoded = MultiBase.decode(actualEncoded).decodeToString()
 
         // then
         assertEquals(expectedEncoded, actualEncoded)
@@ -121,8 +120,8 @@ class MultiBaseTests {
         val expectedEncoded = "meWVzIG1hbmkgIQ"
 
         // when
-        val actualEncoded: String = MultiBase.encode(MultiBase.Base64, testString.toByteArray())
-        val actualDecoded = String(MultiBase.decode(actualEncoded))
+        val actualEncoded: String = MultiBase.encode(MultiBase.Base64, testString.encodeToByteArray())
+        val actualDecoded = MultiBase.decode(actualEncoded).decodeToString()
 
         // then
         assertEquals(expectedEncoded, actualEncoded)
@@ -136,8 +135,8 @@ class MultiBaseTests {
         val expectedEncoded = "MeWVzIG1hbmkgIQ=="
 
         // when
-        val actualEncoded: String = MultiBase.encode(MultiBase.Base64Pad, testString.toByteArray())
-        val actualDecoded = String(MultiBase.decode(actualEncoded))
+        val actualEncoded: String = MultiBase.encode(MultiBase.Base64Pad, testString.encodeToByteArray())
+        val actualDecoded = MultiBase.decode(actualEncoded).decodeToString()
 
         // then
         assertEquals(expectedEncoded, actualEncoded)
@@ -196,14 +195,14 @@ class MultiBaseTests {
         val expectedEncoded = "bpfsxg43joi"
 
         // when
-        val actualEncoded: String = MultiBase.encode(base, testString.toByteArray())
+        val actualEncoded: String = MultiBase.encode(base, testString.encodeToByteArray())
         println("++++ Base: $base")
         println("++++ encoded = $actualEncoded")
-        val actualDecoded = String(MultiBase.decode(actualEncoded))
+        val actualDecoded = MultiBase.decode(actualEncoded).decodeToString()
 
         println("++++ decoded = $actualDecoded")
         println("++++ expectd = $expectedEncoded")
-        println("++++   test = ${String(MultiBase.decode(expectedEncoded))}")
+        println("++++   test = ${MultiBase.decode(expectedEncoded).decodeToString()}")
 
         // then
         assertEquals(expectedEncoded, actualEncoded)
@@ -218,14 +217,14 @@ class MultiBaseTests {
         val expectedEncoded = "bnvqw4"
 
         // when
-        val actualEncoded: String = MultiBase.encode(base, testString.toByteArray())
+        val actualEncoded: String = MultiBase.encode(base, testString.encodeToByteArray())
         println("++++ Base: $base")
         println("++++ encoded = $actualEncoded")
-        val actualDecoded = String(MultiBase.decode(actualEncoded))
+        val actualDecoded = MultiBase.decode(actualEncoded).decodeToString()
 
         println("++++ decoded = $actualDecoded")
         println("++++ expectd = $expectedEncoded")
-        println("++++   test = ${String(MultiBase.decode(expectedEncoded))}")
+        println("++++   test = ${MultiBase.decode(expectedEncoded).decodeToString()}")
 
         // then
         assertEquals(expectedEncoded, actualEncoded)
@@ -240,14 +239,14 @@ class MultiBaseTests {
         val expectedEncoded = "bme"
 
         // when
-        val actualEncoded: String = MultiBase.encode(base, testString.toByteArray())
+        val actualEncoded: String = MultiBase.encode(base, testString.encodeToByteArray())
         println("++++ Base: $base")
         println("++++ encoded = $actualEncoded")
-        val actualDecoded = String(MultiBase.decode(actualEncoded))
+        val actualDecoded = MultiBase.decode(actualEncoded).decodeToString()
 
         println("++++ decoded = $actualDecoded")
         println("++++ expectd = $expectedEncoded")
-        println("++++   test = ${String(MultiBase.decode(expectedEncoded))}")
+        println("++++   test = ${MultiBase.decode(expectedEncoded).decodeToString()}")
 
         // then
         assertEquals(expectedEncoded, actualEncoded)
@@ -262,15 +261,15 @@ class MultiBaseTests {
         val expectedEncoded = "mbWFu"
 
         // when
-        val actualEncoded: String = MultiBase.encode(base, testString.toByteArray())
-        val actualDecoded = String(MultiBase.decode(actualEncoded))
+        val actualEncoded: String = MultiBase.encode(base, testString.encodeToByteArray())
+        val actualDecoded = MultiBase.decode(actualEncoded).decodeToString()
 
         println("++++ Base: $base")
         println("++++ decoded = $actualDecoded")
         println("++++ encoded = $actualEncoded")
         println("++++ expectd = $expectedEncoded")
-        println("++++    test = m${Base64.getEncoder().encodeToString(testString.toByteArray())}")
-        println("++++   test2 = ${String(MultiBase.decode(expectedEncoded))}")
+//        println("++++    test = m${Base64.getEncoder().encodeToString(testString.encodeToByteArray())}")
+        println("++++   test2 = ${MultiBase.decode(expectedEncoded).decodeToString()}")
 
         // then
         assertEquals(expectedEncoded, actualEncoded)
@@ -285,15 +284,15 @@ class MultiBaseTests {
         val expectedEncoded = "mSGVsbG8h"
 
         // when
-        val actualEncoded: String = MultiBase.encode(base, testString.toByteArray())
-        val actualDecoded = String(MultiBase.decode(actualEncoded))
+        val actualEncoded: String = MultiBase.encode(base, testString.encodeToByteArray())
+        val actualDecoded = MultiBase.decode(actualEncoded).decodeToString()
 
         println("++++ Base: $base")
         println("++++ decoded = $actualDecoded")
         println("++++ encoded = $actualEncoded")
         println("++++ expectd = $expectedEncoded")
-        println("++++    test = m${Base64.getEncoder().encodeToString(testString.toByteArray())}")
-        println("++++   test2 = ${String(MultiBase.decode(expectedEncoded))}")
+//        println("++++    test = m${Base64.getEncoder().encodeToString(testString.encodeToByteArray())}")
+        println("++++   test2 = ${MultiBase.decode(expectedEncoded).decodeToString()}")
 
         // then
         assertEquals(expectedEncoded, actualEncoded)
@@ -308,15 +307,15 @@ class MultiBaseTests {
         val expectedEncoded = "mRGVjZW50cmFsaXplIGV2ZXJ5dGhpbmchISE"
 
         // when
-        val actualEncoded: String = MultiBase.encode(base, testString.toByteArray())
-        val actualDecoded = String(MultiBase.decode(actualEncoded))
+        val actualEncoded: String = MultiBase.encode(base, testString.encodeToByteArray())
+        val actualDecoded = MultiBase.decode(actualEncoded).decodeToString()
 
         println("++++ Base: $base")
         println("++++ decoded = $actualDecoded")
         println("++++ encoded = $actualEncoded")
         println("++++ expectd = $expectedEncoded")
-        println("++++    test = m${Base64.getEncoder().encodeToString(testString.toByteArray())}")
-        println("++++   test2 = ${String(MultiBase.decode(expectedEncoded))}")
+//        println("++++    test = m${Base64.getEncoder().encodeToString(testString.encodeToByteArray())}")
+        println("++++   test2 = ${MultiBase.decode(expectedEncoded).decodeToString()}")
 
         // then
         assertEquals(expectedEncoded, actualEncoded)
@@ -331,33 +330,33 @@ class MultiBaseTests {
         val expectedEncoded = "z2NEpo7TZRRrLZSi2U"
 
         print("+++ test string = ")
-        testString.toByteArray().forEach {
+        testString.encodeToByteArray().forEach {
             print("${it.toString(2)} ")
         }
         println()
 
         print("+++     encoded = ")
-        "2NEpo7TZRRrLZSi2U".toByteArray().forEach {
+        "2NEpo7TZRRrLZSi2U".encodeToByteArray().forEach {
             print("${it.toString(2)} ")
         }
         println()
 
         // SGVsbG8gV29ybGQh
-//        println("+++ quick base64 = ${MultiBase.encode(MultiBase.Base.BASE64, testString.toByteArray())}")
+//        println("+++ quick base64 = ${MultiBase.encode(MultiBase.Base.BASE64, testString.encodeToByteArray())}")
 
         // need 1032 bits/176 bytes per block to make this work.
         // or maybe need 96 bits/17 bytes per block to make this work.
         // http://kvanttt.github.io/BaseNcoding/
 
         // when
-        val actualEncoded: String = MultiBase.encode(base, testString.toByteArray())
-        val actualDecoded = String(MultiBase.decode(actualEncoded))
+        val actualEncoded: String = MultiBase.encode(base, testString.encodeToByteArray())
+        val actualDecoded = MultiBase.decode(actualEncoded).decodeToString()
 
         println("++++ Base: $base")
         println("++++ decoded = $actualDecoded")
         println("++++ encoded = $actualEncoded")
         println("++++ expectd = $expectedEncoded")
-//        println("++++    test = m${Base64.getEncoder().encodeToString(testString.toByteArray())}")
+//        println("++++    test = m${Base64.getEncoder().encodeToString(testString.encodeToByteArray())}")
 //        println("++++   test2 = ${String(MultiBase.decode(expectedEncoded))}")
 
         // then
@@ -372,15 +371,15 @@ class MultiBaseTests {
             ?: throw Exception("Test base not provided for base: $base")
 
         // when
-        val actualEncoded: String = MultiBase.encode(base, testString.toByteArray())
-        val actualDecoded = String(MultiBase.decode(actualEncoded))
+        val actualEncoded: String = MultiBase.encode(base, testString.encodeToByteArray())
+        val actualDecoded = MultiBase.decode(actualEncoded).decodeToString()
 
         println("++++ Base: $base")
         println("++++ decoded = $actualDecoded")
         println("++++ encoded = $actualEncoded")
         println("++++ expectd = $expectedEncoded")
-//        println("++++    test = _${Base64.getEncoder().encodeToString(testString.toByteArray())}")
-        println("++++   test2 = ${String(MultiBase.decode(expectedEncoded))}")
+//        println("++++    test = _${Base64.getEncoder().encodeToString(testString.encodeToByteArray())}")
+        println("++++   test2 = ${MultiBase.decode(expectedEncoded).decodeToString()}")
 
         // then
         assertEquals(expectedEncoded, actualEncoded)

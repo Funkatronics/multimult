@@ -1,7 +1,7 @@
 package com.funkatronics.encoders
 
 import com.funkatronics.encoders.error.InvalidInputException
-import org.junit.jupiter.api.Test
+import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
@@ -14,7 +14,7 @@ class Base32Tests {
         val expectedEncoded = "NVQW4==="
 
         // when
-        val actualEncoded: String = Base32.encodeToString(testString.toByteArray())
+        val actualEncoded: String = Base32.encodeToString(testString.encodeToByteArray())
         val actualDecoded = Base32.decodeToString(actualEncoded)
 
         // then
@@ -29,7 +29,7 @@ class Base32Tests {
         val expectedEncoded = "JBSWY3DPEE======"
 
         // when
-        val actualEncoded: String = Base32.encodeToString(testString.toByteArray())
+        val actualEncoded: String = Base32.encodeToString(testString.encodeToByteArray())
         val actualDecoded = Base32.decodeToString(actualEncoded)
 
         // then
@@ -41,11 +41,11 @@ class Base32Tests {
     fun testBase32EncodeDecodeLeadingZeros() {
         // given
         val leadingZeros = 5
-        val testString: String = String(ByteArray(leadingZeros)) + "Hello!"
+        val testString: String = ByteArray(leadingZeros).decodeToString() + "Hello!"
         val expectedEncoded = "AAAAAAAAJBSWY3DPEE======"
 
         // when
-        val actualEncoded: String = Base32.encodeToString(testString.toByteArray())
+        val actualEncoded: String = Base32.encodeToString(testString.encodeToByteArray())
         val actualDecoded = Base32.decodeToString(actualEncoded)
 
         // then
@@ -60,7 +60,7 @@ class Base32Tests {
         val expectedEncoded = ""
 
         // when
-        val actualEncoded: String = Base32.encodeToString(testString.toByteArray())
+        val actualEncoded: String = Base32.encodeToString(testString.encodeToByteArray())
         val actualDecoded = Base32.decodeToString(actualEncoded)
 
         // then
@@ -97,7 +97,7 @@ class Base32Tests {
         for (entry in testVector) {
 
             // when
-            val actualEncoded: String = Base32.encodeToString(entry.key.toByteArray())
+            val actualEncoded: String = Base32.encodeToString(entry.key.encodeToByteArray())
             val actualDecoded = Base32.decodeToString(actualEncoded)
 
             // then
@@ -121,7 +121,7 @@ class Base32Tests {
         for (entry in testVector) {
 
             // when
-            val actualEncoded: String = Base32.getHexEncoder().encodeToString(entry.key.toByteArray())
+            val actualEncoded: String = Base32.getHexEncoder().encodeToString(entry.key.encodeToByteArray())
             val actualDecoded = Base32.getHexDecoder().decodeToString(actualEncoded)
 
             // then

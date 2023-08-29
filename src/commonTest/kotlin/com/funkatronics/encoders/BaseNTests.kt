@@ -45,7 +45,7 @@ class BaseNTests {
 
     @Test
     fun testBase() {
-        encodedSamples2.forEach { base, input ->
+        encodedSamples2.forEach { (base, input) ->
             val origin = BaseN.decodeBase2N(base.alphabet.filter { it != '=' }, base.alphabet.filter { it != '=' }.length, input.replace('=', base.alphabet[0]))
             val encode = BaseN.encodeBase2N(base.alphabet.filter { it != '=' }, origin)
             assertEquals(input.filter { it != '=' }, encode)
@@ -59,12 +59,12 @@ class BaseNTests {
 
         // when
         encodedSamples.forEach { (alphabet, expectedEncoding) ->
-            val actualEncoding = BaseN.encode(alphabet, testString.toByteArray())
+            val actualEncoding = BaseN.encode(alphabet, testString.encodeToByteArray())
             val actualDecoded = BaseN.decode(alphabet, actualEncoding)
 
             // then
             assertEquals(expectedEncoding, actualEncoding)
-            assertEquals(sampleString, String(actualDecoded))
+            assertEquals(sampleString, actualDecoded.decodeToString())
         }
     }
 
@@ -75,12 +75,12 @@ class BaseNTests {
 
         // when
         encodedSamples.forEach { (alphabet, expectedEncoding) ->
-            val actualEncoding = BaseN.encodeBase2N(alphabet, testString.toByteArray())
+            val actualEncoding = BaseN.encodeBase2N(alphabet, testString.encodeToByteArray())
             val actualDecoded = BaseN.decodeBase2N(alphabet, alphabet.length, actualEncoding)
 
             // then
             assertEquals(expectedEncoding, actualEncoding)
-            assertEquals(sampleString, String(actualDecoded), "decode failed: base = ${alphabet.length}")
+            assertEquals(sampleString, actualDecoded.decodeToString(), "decode failed: base = ${alphabet.length}")
         }
     }
 
@@ -91,7 +91,7 @@ class BaseNTests {
 //
 //        // when
 //        encodedSamples.forEach { (alphabet, expectedEncoding) ->
-//            val actualEncoding = BaseN.encodeBaseN(alphabet, testString.toByteArray())
+//            val actualEncoding = BaseN.encodeBaseN(alphabet, testString.encodeToByteArray())
 //            val actualDecoded = BaseN.decodeBaseNCanonical(alphabet, alphabet.length, actualEncoding)
 //
 //            // then
@@ -108,14 +108,14 @@ class BaseNTests {
 //            ?: throw Exception("Test base not provided for base: $base")
 //
 //        // when
-//        val actualEncoded: String = MultiBase.encode(base, testString.toByteArray())
+//        val actualEncoded: String = MultiBase.encode(base, testString.encodeToByteArray())
 //        val actualDecoded = String(MultiBase.decode(actualEncoded))
 //
 //        println("++++ Base: $base")
 //        println("++++ decoded = $actualDecoded")
 //        println("++++ encoded = $actualEncoded")
 //        println("++++ expectd = $expectedEncoded")
-////        println("++++    test = _${Base64.getEncoder().encodeToString(testString.toByteArray())}")
+////        println("++++    test = _${Base64.getEncoder().encodeToString(testString.encodeToByteArray())}")
 //        println("++++   test2 = ${String(MultiBase.decode(expectedEncoded))}")
 //
 //        // then

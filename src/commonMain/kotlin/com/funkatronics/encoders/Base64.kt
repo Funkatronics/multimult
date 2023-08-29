@@ -15,7 +15,7 @@ object Base64 : Encoder, Decoder {
 }
 
 sealed class Base64Encoder(val alphabet: String, private val withoutPadding: Boolean = false): Encoder {
-    override fun encode(input: ByteArray): ByteArray = encodeToString(input).toByteArray()
+    override fun encode(input: ByteArray): ByteArray = encodeToString(input).encodeToByteArray()
     override fun encodeToString(input: ByteArray): String = Base2N.encode(alphabet, 64, input, !withoutPadding)
 
     class Default(withoutPadding: Boolean)
@@ -26,7 +26,7 @@ sealed class Base64Encoder(val alphabet: String, private val withoutPadding: Boo
 
 sealed class Base64Decoder(val alphabet: String): Decoder {
     override fun decode(input: String): ByteArray = Base2N.decode(alphabet, 64, input)
-    override fun decodeToString(input: String): String = String(decode(input))
+    override fun decodeToString(input: String): String = decode(input).decodeToString()
 
     class Default : Base64Decoder("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/")
     class Url : Base64Decoder("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_")

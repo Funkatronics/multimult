@@ -1,6 +1,6 @@
 package com.funkatronics.encoders
 
-import org.junit.jupiter.api.Test
+import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
@@ -13,7 +13,7 @@ class BinaryTests {
         val expectedEncoded = "01111001011001010111001100100000011011010110000101101110011010010010000000100001"
 
         // when
-        val actualEncoded: String = Binary.encodeToString(testString.toByteArray())
+        val actualEncoded: String = Binary.encodeToString(testString.encodeToByteArray())
         val actualDecoded = Binary.decodeToString(actualEncoded)
 
         // then
@@ -25,11 +25,11 @@ class BinaryTests {
     fun testBase2EncodeDecodeLeadingZeros() {
         // given
         val leadingZeros = 2
-        val testString: String = String(ByteArray(leadingZeros)) + "yes mani !"
+        val testString: String = ByteArray(leadingZeros).decodeToString() + "yes mani !"
         val expectedEncoded = "000000000000000001111001011001010111001100100000011011010110000101101110011010010010000000100001"
 
         // when
-        val actualEncoded: String = Binary.encodeToString(testString.toByteArray())
+        val actualEncoded: String = Binary.encodeToString(testString.encodeToByteArray())
         val actualDecoded = Binary.decodeToString(actualEncoded)
 
         // then
@@ -44,7 +44,7 @@ class BinaryTests {
         val expectedEncoded = ""
 
         // when
-        val actualEncoded: String = Binary.encodeToString(testString.toByteArray())
+        val actualEncoded: String = Binary.encodeToString(testString.encodeToByteArray())
         val actualDecoded = Binary.decodeToString(actualEncoded)
 
         // then

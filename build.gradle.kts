@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "io.github.funkatronics"
-version = "0.1.0"
+version = "main-SNAPSHOT"
 
 repositories {
     google()
@@ -20,14 +20,24 @@ kotlin {
             useJUnitPlatform()
         }
     }
+    listOf(
+        iosX64(),
+        iosArm64(),
+        iosSimulatorArm64(),
+        macosX64(),
+        macosArm64()
+    ).forEach {
+        it.binaries.framework {
+            baseName = "multimult"
+        }
+    }
     sourceSets {
         val commonMain by getting
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
+                implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
             }
         }
-        val jvmMain by getting
-        val jvmTest by getting
     }
 }
