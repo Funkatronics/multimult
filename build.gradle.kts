@@ -3,9 +3,6 @@ plugins {
     id("com.vanniktech.maven.publish") version "0.25.3"
 }
 
-group = "io.github.funkatronics"
-version = "main-SNAPSHOT"
-
 repositories {
     google()
     mavenCentral()
