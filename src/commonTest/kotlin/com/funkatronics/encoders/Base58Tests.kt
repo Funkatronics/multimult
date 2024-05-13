@@ -2,6 +2,7 @@ package com.funkatronics.encoders
 
 import com.funkatronics.encoders.error.InvalidInputException
 import kotlin.test.Test
+import kotlin.test.assertContentEquals
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
@@ -86,5 +87,20 @@ class Base58Tests {
             assertEquals(entry.value, actualEncoded)
             assertEquals(entry.key.decodeToString(), actualDecoded)
         }
+    }
+
+    @Test
+    fun testBase58EncodeDecodeAllZeros() {
+        // given
+        val bytes = ByteArray(10) { 0 }
+        val expectedEncoded = "1111111111"
+
+        // when
+        val actualEncoded: String = Base58.encodeToString(bytes)
+        val actualDecoded = Base58.decode(actualEncoded)
+
+        // then
+        assertEquals(expectedEncoded, actualEncoded)
+        assertContentEquals(bytes, actualDecoded)
     }
 }

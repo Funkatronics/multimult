@@ -54,6 +54,22 @@ class Base32Tests {
     }
 
     @Test
+    fun testBase32EncodeDecodeAllZeros() {
+        // given
+        val length = 9
+        val testString: String = ByteArray(length).decodeToString()
+        val expectedEncoded = "AAAAAAAAAAAAAAA="
+
+        // when
+        val actualEncoded: String = Base32.encodeToString(testString.encodeToByteArray())
+        val actualDecoded = Base32.decodeToString(actualEncoded)
+
+        // then
+        assertEquals(expectedEncoded, actualEncoded)
+        assertEquals(testString, actualDecoded)
+    }
+
+    @Test
     fun testBase32EncodeDecodeEmptyString() {
         // given
         val testString = ""
