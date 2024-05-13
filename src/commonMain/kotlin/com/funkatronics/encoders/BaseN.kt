@@ -47,6 +47,7 @@ object BaseN {
 
         // Count leading zeros.
         var zeros = input.indexOfFirst { it.toInt() != 0 }
+        if (zeros == -1) return CharArray(input.size) { alphabet[0] }
 
         // Convert base-256 digits to base-N digits (plus conversion to ASCII characters)
         val input = input.copyOf(input.size) // since we modify it in-place
@@ -120,6 +121,7 @@ object BaseN {
 
         // Count leading zeros.
         val zeros = bytes.indexOfFirst { it.toInt() != 0 }
+        if (zeros == -1) return ByteArray(input.length)
 
         // Convert base-58 digits to base-256 digits.
         val decoded = ByteArray(input.length)

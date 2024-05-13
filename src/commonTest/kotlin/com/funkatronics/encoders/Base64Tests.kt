@@ -56,6 +56,22 @@ class Base64Tests {
     }
 
     @Test
+    fun testBase64EncodeDecodeAllZeros() {
+        // given
+        val length = 10
+        val testString: String = ByteArray(length).decodeToString()
+        val expectedEncoded = "AAAAAAAAAAAAAA=="
+
+        // when
+        val actualEncoded: String = Base64.encodeToString(testString.encodeToByteArray())
+        val actualDecoded = Base64.decodeToString(actualEncoded)
+
+        // then
+        assertEquals(expectedEncoded, actualEncoded)
+        assertEquals(testString, actualDecoded)
+    }
+
+    @Test
     fun testBase64EncodeDecodeEmptyString() {
         // given
         val testString = ""
