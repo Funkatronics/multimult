@@ -1,9 +1,9 @@
 package com.funkatronics.encoders
 
 import com.funkatronics.encoders.error.InvalidInputException
-import com.funkatronics.multibase.MultiBase
 import kotlinx.datetime.Clock
 import kotlin.test.Test
+import kotlin.test.assertContentEquals
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
@@ -69,6 +69,56 @@ class Base64Tests {
         // then
         assertEquals(expectedEncoded, actualEncoded)
         assertEquals(testString, actualDecoded)
+    }
+
+    @Test
+    fun testBase64EncodeDecodeLeadingSlashes() {
+        // given
+        val leadingSlashes = 3
+        val testBytes: ByteArray = ByteArray(leadingSlashes) { -1 } + ("Hello!".encodeToByteArray())
+        val expectedEncoded = "////SGVsbG8h"
+
+        // when
+        val actualEncoded: String = Base64.encodeToString(testBytes)
+        val actualDecoded = Base64.decode(actualEncoded)
+
+        // then
+        assertEquals(expectedEncoded, actualEncoded)
+        assertContentEquals(testBytes, actualDecoded)
+    }
+
+    @Test
+    fun testBase64EncodeDecodeAllSlashes() {
+        // given
+        val length = 9
+        val testBytes: ByteArray = ByteArray(length) { -1 }
+        val expectedEncoded = "////////////"
+
+        // when
+        val actualEncoded: String = Base64.encodeToString(testBytes)
+        val actualDecoded = Base64.decode(actualEncoded)
+
+        // then
+        assertEquals(expectedEncoded, actualEncoded)
+        assertContentEquals(testBytes, actualDecoded)
+    }
+
+    @Test
+    fun testBase64EncodeDecode64ByteSignature() {
+        // given
+        val base58 = "5v73EHnNSKbhDWBbUVXiGRwnwJC6MBrkGJCqHzv8c4aiM5rCK9EL7LKNMzL7Fcsn7gZU4yxoe29i2Ukz2tsQMefi"
+        val testBytes: ByteArray = Base58.decode(base58)
+        val expectedEncoded = "9dzrJOzVyp2uF1rK21F6zWwNPF73JToq3cwQw5eeB8LFwbiX6tRNFAVKcICtz6IOAkCS+CHLv37fYBclnITkCQ=="
+
+        // when
+        val actualEncoded: String = Base64.encodeToString(testBytes)
+        val actualDecoded = Base64.decode(actualEncoded)
+
+        // then
+        assertEquals(64, actualDecoded.size)
+        assertEquals(base58, Base58.encodeToString(actualDecoded))
+        assertEquals(expectedEncoded, actualEncoded)
+        assertContentEquals(testBytes, actualDecoded)
     }
 
     @Test
