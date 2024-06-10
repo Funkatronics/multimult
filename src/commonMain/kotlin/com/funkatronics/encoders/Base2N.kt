@@ -24,17 +24,17 @@ object Base2N {
 
         var result = ""
         var index = 0
+        val byteMask = 255L
         while (index < input.size) {
             val symbolsLeft = input.size - index
             val padSize = if (symbolsLeft >= blockSize) 0 else (blockSize - symbolsLeft)*8/bitsPerChar
             var chunk = 0L
 
-            var chunkS = ""
             (0 until blockSize).forEach { blockIndex ->
-                chunk = chunk or
-                        (input.getOrElse(index + blockIndex) { 0 }.toLong() shl 8 * (blockSize - blockIndex - 1))
-
-                chunkS += input.getOrElse(index + blockIndex) { 0 }.toInt().toChar()
+                chunk = chunk or (
+                        input.getOrElse(index + blockIndex) { 0 }.toLong() and byteMask
+                                shl 8 * (blockSize - blockIndex - 1)
+                )
             }
 
             index += blockSize
