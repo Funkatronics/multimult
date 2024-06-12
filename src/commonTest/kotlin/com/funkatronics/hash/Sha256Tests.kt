@@ -136,19 +136,22 @@ class Sha256Tests {
     }
 
     @Test
-    fun testPaddedLengthDivisibleBy512() {
-        for (length in 0..128) {
+    fun `padded message length divisible by 512`() {
+        (0..128).forEach { length ->
+            // given
             val b = ByteArray(length)
 
+            // when
             val padded = Sha256.pad(b)
             val paddedLengthBits: Int = padded.size * Int.SIZE_BYTES * 8
 
+            // then
             assertEquals(0, paddedLengthBits % 512)
         }
     }
 
     @Test
-    fun testPaddedMessageHas1Bit() {
+    fun `padded message has 1 bit`() {
         // given
         val message = ByteArray(64)
         val expectedInt = 0b1000_0000_0000_0000_0000_0000_0000_0000.toInt()
@@ -161,16 +164,17 @@ class Sha256Tests {
     }
 
     @Test
-    fun testPadMessage() {
+    fun `pad message length and original message size`() {
         // given
         val message = "hello".encodeToByteArray()
+        val originalMessageSizeBits = message.size*8
 
         // when
         val padded = Sha256.pad(message)
 
         // then
         assertEquals(0, (padded.size * Int.SIZE_BYTES * 8) % 512)
-        assertEquals(message.size * 8, padded[padded.size - 2] or padded.last())
+        assertEquals(originalMessageSizeBits, padded[padded.size - 2] or padded.last())
     }
 
     private fun String.decodeHex(): ByteArray =
