@@ -1,6 +1,6 @@
 plugins {
-    kotlin("multiplatform") version "1.9.24"
-    id("com.vanniktech.maven.publish") version "0.25.3"
+    alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.vanniktech.mavenPublish)
 }
 
 repositories {
@@ -9,13 +9,8 @@ repositories {
 }
 
 kotlin {
-    jvm {
-        jvmToolchain(11)
-        withJava()
-        testRuns["test"].executionTask.configure {
-            useJUnitPlatform()
-        }
-    }
+    jvmToolchain(11)
+    jvm()
     listOf(
         iosX64(),
         iosArm64(),
@@ -24,15 +19,15 @@ kotlin {
         macosArm64()
     ).forEach {
         it.binaries.framework {
-            baseName = "multimult"
+            baseName = "kborsh"
         }
     }
     sourceSets {
         val commonMain by getting
         val commonTest by getting {
             dependencies {
-                implementation(kotlin("test"))
-                implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
+                implementation(libs.kotlin.test)
+                implementation(libs.kotlinx.datetime)
             }
         }
     }
