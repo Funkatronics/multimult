@@ -1,11 +1,13 @@
 package com.funkatronics.encoders
 
 import com.funkatronics.encoders.error.InvalidInputException
-import kotlinx.datetime.Clock
+import kotlin.time.Clock
+import kotlin.time.Instant
 import kotlin.test.Test
 import kotlin.test.assertContentEquals
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
+import kotlin.time.ExperimentalTime
 
 class Base64Tests {
 
@@ -240,6 +242,7 @@ class Base64Tests {
 //        }
 //    }
 
+    @OptIn(ExperimentalTime::class)
     fun simpleMeasureTest(
         ITERATIONS: Int = 5000,
         TEST_COUNT: Int = 10,
