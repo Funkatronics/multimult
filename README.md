@@ -40,8 +40,6 @@ val encoded: String = Base58.encodeToString(bytesToEncode)
 val decoded = Base58.decodeToString(encoded)
 ```
 
-MultiBase.encode(MultiBase.Base8, 
-
 
 ### MultiBase
 ```kotlin
